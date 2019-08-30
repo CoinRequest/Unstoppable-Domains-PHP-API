@@ -21,7 +21,7 @@ You will need Composer to install this package.
 After installing this package with Composer, create a new Unstoppable Domains
 instance. And include your Reseller ID and API key. Please contact Unstoppable Domains to obtain your private credentials.
 
-Something like this
+Something like this:
 
 ```
 $unstoppableDomains = new UnstoppableDomains('yourresellerid', 'yourpersonalapikey');
@@ -41,7 +41,7 @@ The current implemented endpoints are:
 * GET   /users/$emailAddress/orders/$orderId
 
 Documentation of the endpoints will be available online at a later moment. Please check the code for documentation and example requests and responses.
-You can always check the docs and examples on the [Unstoppable Domains docs website](https://docs.unstoppabledomains.com)
+You can always check the docs and examples on the [Unstoppable Domains docs website](https://docs.unstoppabledomains.com).
 
 ## Running the tests
 
