@@ -25,7 +25,6 @@ class OrderEndpointTest extends TestCase
 
 
         } catch (GuzzleException $e) {
-            dd($e);
             $this->assertEquals(true, false);
         }
     }
@@ -58,7 +57,6 @@ class OrderEndpointTest extends TestCase
 
 
         } catch (GuzzleException $e) {
-            dd($e->getMessage());
             $this->assertEquals(true, false);
         }
 
