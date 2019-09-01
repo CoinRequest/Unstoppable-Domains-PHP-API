@@ -22,8 +22,8 @@ class UnstoppableDomains
 
     public static $API_ROUTE = 'https://unstoppabledomains.com/api/v1/resellers/';
 
-    //180 seconds
-    public static $TIMEOUT = 180.0;
+    // Use 0 to wait indefinitely (the default behavior).
+    public static $TIMEOUT = 0;
 
     public static $TEST_MODE = false;
 
