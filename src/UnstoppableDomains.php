@@ -22,6 +22,8 @@ class UnstoppableDomains
 
     public static $API_ROUTE = 'https://unstoppabledomains.com/api/v1/resellers/';
 
+    public static $BASE_ENDPOINT = 'https://unstoppabledomains.com/api/v1/resellers/';
+
     // Use 0 to wait indefinitely (the default behavior).
     public static $TIMEOUT = 0;
 
@@ -30,7 +32,7 @@ class UnstoppableDomains
 
     public function __construct($resellerId, $apiKey, $testMode = false)
     {
-        self::$API_ROUTE .= $resellerId.'/';
+        self::$API_ROUTE = self::$BASE_ENDPOINT . $resellerId.'/';
 
         //not used
         self::$TEST_MODE = $testMode;
