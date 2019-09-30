@@ -68,7 +68,11 @@ class OrdersEndpoint extends BaseEndpoint
      *    "domains":[
      *      {
      *          "name":"reseller-test-udtesting-17829.zil",
-     *          "owner":"0xa823a39d2d5d2b981a10ca8f0516e6eaff78bdcf",
+     *          "owner": {
+     *              "type": "ETH",
+     *              "publicKey:
+     *              "0x04a2f646354d081019fa3197ad8eae554ffbd266172d84dee778a0e41eb4f7330d991bdb57bc5d65e0928b343bc71bc8cb68e4932ea1721d4c6445059702a17b5b"
+     *          }
      *          "resolution":{
      *              "crypto":{
      *                  "ZIL":{
@@ -110,7 +114,9 @@ class OrdersEndpoint extends BaseEndpoint
      *                             via the Stripe Checkout Flow
      * @param string $emailAddress Valid email address
      * @param string $domain       Valid .zil domain
-     * @param null   $owner        Valid Zilliqa Or Ethereum wallet address. Example: 0xa823a39d2d5d2b981a10ca8f0516e6eaff78bdcf
+     * @param string $type         'ZIL' or 'ETH'
+     * @param null   $publicKey    Valid Zilliqa Or Ethereum public key. Example:
+     *                             0x04a2f646354d081019fa3197ad8eae554ffbd266172d84dee778a0e41eb4f7330d991bdb57bc5d65e0928b343bc71bc8cb68e4932ea1721d4c6445059702a17b5b
      * @param array  $addresses    Array of wallet addresses. Example : ["ZIL" =>
      *                             "0xe568f2BB42A77F6508911290d581B3Af107b1e4B", "ETH"=>
      *                             "0x20B4564DEB7AF89ece828d843D0Ac2c16934a23e"]
@@ -118,7 +124,7 @@ class OrdersEndpoint extends BaseEndpoint
      * @return array
      * @throws GuzzleException
      */
-    public function orderDomainWithStripeFor($stripeToken, $emailAddress, $domain, $owner, $addresses = [])
+    public function orderDomainWithStripeFor($stripeToken, $emailAddress, $domain, $type, $publicKey, $addresses = [])
     {
 
         if ( ! is_array($addresses)) {
@@ -139,8 +145,11 @@ class OrdersEndpoint extends BaseEndpoint
                     ],
                     'domains' => [
                         [
-                            'name'       => $domain,
-                            'owner'      => $owner,
+                            'name'  => $domain,
+                            'owner' => [
+                                'type'      => $type,
+                                'publicKey' => $publicKey
+                            ],
                             //"resolution" => [
                             //    "crypto" => [
                             //        $addressMapper

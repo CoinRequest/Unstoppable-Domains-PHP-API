@@ -21,7 +21,7 @@ class OrderEndpointTest extends TestCase
             $this->assertEquals($orderId, $response['order']->orderNumber);
             $this->assertTrue(true, $response['order']->test);
             $this->assertEquals('stripe', $response['order']->payment->type);
-            $this->assertTrue(isset($response['order']->items[0]->blockchain->status));
+            $this->assertEquals('success',$response['order']->payment->status);
 
 
         } catch (GuzzleException $e) {
@@ -41,11 +41,12 @@ class OrderEndpointTest extends TestCase
         }
         $stripeToken = $this->getStripeToken();
         $domainName = $this->getRandomTestDomain();
-        $ethAddress = '0xa823a39d2d5d2b981a10ca8f0516e6eaff78bdcf';
+        $type = 'ETH';
+        $publicKey = '0x04a2f646354d081019fa3197ad8eae554ffbd266172d84dee778a0e41eb4f7330d991bdb57bc5d65e0928b343bc71bc8cb68e4932ea1721d4c6445059702a17b5b';
 
 
         try {
-            $response = $this->unstoppableDomains->ordersEndpoint()->orderDomainWithStripeFor($stripeToken, $email, $domainName, $ethAddress);
+            $response = $this->unstoppableDomains->ordersEndpoint()->orderDomainWithStripeFor($stripeToken, $email, $domainName, $type, $publicKey);
             $this->assertTrue(isset($response['order']->orderNumber));
             $this->assertTrue(isset($response['order']->subtotal));
             $this->assertTrue(($response['order']->subtotal > 0));
@@ -57,6 +58,7 @@ class OrderEndpointTest extends TestCase
 
 
         } catch (GuzzleException $e) {
+            dd($e->getMessage());
             $this->assertEquals(true, false);
         }
 

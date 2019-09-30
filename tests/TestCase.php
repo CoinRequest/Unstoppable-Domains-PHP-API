@@ -102,7 +102,5 @@ class TestCase extends \PHPUnit\Framework\TestCase
         } catch (GuzzleException $e) {
             return null;
         }
-
-
     }
 }
